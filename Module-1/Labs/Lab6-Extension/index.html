@@ -1,0 +1,98 @@
+<html>
+
+    <head>
+        <script type="text/javascript" src="script.js"></script>
+        <link href="styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+
+        <script type="text/javascript">
+            function setCompanyList(elemId)
+            {
+                document.getElementById(elemId).appendChild(createCompanyList())
+            }
+
+            function setPeopleList(elemId)
+            {
+                document.getElementById(elemId).innerHTML = createPeopleList();
+            }
+            
+            function updateCompanyList()
+            {
+                const name = document.getElementById("new_comp_name").value;
+                const cat = document.getElementById("new_comp_category").value;
+                const start = document.getElementById("new_comp_start").value;
+                const end = document.getElementById("new_comp_end").value;
+                addCompany(name, cat, start, end);
+                document.getElementById('company_list').replaceChildren(createCompanyList());
+                alert("Added new company "+name)
+            }
+
+            function updatePeopleList()
+            {
+                const name = document.getElementById("new_per_name").value;
+                const street = document.getElementById("new_per_street").value;
+                const suburb = document.getElementById("new_per_suburb").value;
+                const comp = document.getElementById("new_per_comp").value;
+                addPerson(name, street, suburb, comp);
+                document.getElementById('people_list').innerHTML = createPeopleList();
+                alert("Added new user "+name);
+            }
+        </script>
+
+        <div class="container">
+
+            <div class="companies">
+                <h2>Companies</h2>
+
+                <form name="company_actions">
+                    <div id="company_list"></div>
+                    <input type="button" value="Get All Companies" onclick="setCompanyList('company_list')"></input>
+                    <br>
+                    <div>
+                        <br>
+                        <input id="new_comp_name" type="text" placeholder="What is your company's name?"></input>
+                        <br>
+                        <input id="new_comp_category" type="text" placeholder="What is your company's category?"></input>
+                        <br>
+                        <input id="new_comp_start" type="text" placeholder="What is your company's founding date?"></input>
+                        <br>
+                        <input id="new_comp_end" type="text" placeholder="What did your company go under?"></input>
+                        <br>
+                        <br>
+                        <input type="button" value="Add My Company" onclick="updateCompanyList()"></input>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="people">
+                <h2>People</h2>
+
+                <form name="people_actions">
+                    <div id="people_list"></div>
+                    <input type="button" value="Get All People" onclick="setPeopleList('people_list')"></input>
+                    <br>
+                    <div>
+                        <br>
+                        <input id="new_per_name" type="text" placeholder="What is your name?"></input>
+                        <br>
+                        <input id="new_per_street" type="text" placeholder="What is your street address?"></input>
+                        <br>
+                        <input id="new_per_suburb" type="text" placeholder="What is your suburb?"></input>
+                        <br>
+                        <input id="new_per_comp" type="text" placeholder="What company do you work for?"></input>
+                        <br>
+                        <br>
+                        <input type="button" value="Add Me" onclick="updatePeopleList()"></input>
+                    </div>
+                </form>  
+
+            </div>     
+
+        </div>
+
+    </body>
+
+</html>
