@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Module 2 Lab 1 Site</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="A small site to practice semantic tags in HTML"
+    />
+    <meta name="keywords" content="HTML, semantic tags, lab" />
+    <meta name="author" content="Chris Ortolf & Copilot" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <!-- works like <a href="/index.html">Home</a> -->
+        <a href="/">Home</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>My HTML learning journey</h1>
+      <article>
+        <h2>Learning elements - div, span, p, pre, ul, li, ol, article</h2>
+        <div>Content1</div>
+        <div>Content2</div>
+        <div>Content3</div>
+        <span>Span1</span>
+        <span>Span2</span>
+        <span>Span3</span>
+        <p>p represents paragraph without preserving spacing</p>
+        <pre>
+      Text in         a pre element
+      is displayed in a fixed-width
+      font, and it preserves
+      both      spaces and
+      line breaks
+      </pre
+        >
+        <ul>
+          <li>Paradiddle-diddle</li>
+          <li>Book Reports</li>
+          <li>Swiss Triplet</li>
+          <li>Double Ratemacue</li>
+        </ul>
+        <ol>
+          <li>Java</li>
+          <li>C#</li>
+          <li>
+            Javascript
+            <ol>
+              <li>JSON</li>
+              <li>Node.js</li>
+            </ol>
+          </li>
+        </ol>
+      </article>
+      <article>
+        <h2>Example Table</h2>
+        <table>
+          <thead>
+            <style>
+              table,
+              th,
+              td {
+                border: 1px solid black;
+              }
+            </style>
+            <tr>
+              <th colspan="2">Header 1</th>
+              <th>Header 2</th>
+              <th>Header 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Row 1, Cell 1</td>
+              <td>Row 1, Cell 2</td>
+              <td>Row 1, Cell 3</td>
+              <td>extra cell</td>
+            </tr>
+            <tr>
+              <td>Row 2, Cell 1</td>
+              <td>Row 2, Cell 2</td>
+              <td>Row 2, Cell 3</td>
+              <td>extra cell</td>
+            </tr>
+            <tr>
+              <td>Row 3, Cell 1</td>
+              <td>Row 3, Cell 2</td>
+              <td>Row 3, Cell 3</td>
+              <td>extra cell</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+      <div>
+        <form method="POST" action="http://127.0.0.1:5500/form">
+          <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" />
+          </div>
+          <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" />
+          </div>
+          <div>
+            <input type="radio" name="lang" value="JavaScript" />
+            <label for="JavaScript">JavaScript</label>
+            <input type="radio" name="lang" value="Python" />
+            <label for="Python">Python</label>
+            <input type="radio" name="lang" value="OCaml" />
+            <label for="OCaml">OCaml</label>
+          </div>
+          <div>
+            <input type="checkbox" name="car" value="sedan" />
+            <label for="car">Sedan</label>
+            <input type="checkbox" name="car" value="coupe" />
+            <label for="car">Coupe</label>
+            <input type="checkbox" name="car" value="pickup" />
+            <label for="car">Pickup</label>
+          </div>
+          <div>
+            <select name="Make">
+              <option value="Ford">Ford</option>
+              <option value="Chevy">Chevy</option>
+              <option value="Toyota">Toyota</option>
+            </select>
+            <label for="Make">Make</label>
+          </div>
+          <button type="submit">Submit form</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>Copyright &copy; 2024</footer>
+  </body>
+</html>
