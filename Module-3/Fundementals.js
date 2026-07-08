@@ -192,3 +192,128 @@ inigo.greeting(westley)
 inigo.greeting(rugen)
 
 //PROBLEM SEVEN
+
+const basketballGame = {       
+    score: 0,     
+    fouls: 0,
+    freeThrow() {         
+        this.score++;     
+        return this;
+    },     
+    basket() {         
+        this.score += 2;
+        return this;     
+    },     
+    threePointer() {         
+        this.score += 3;
+        return this;     
+    },     
+    halfTime() {         
+        console.log('Halftime score is ' + this.score + ' with ' + this.fouls + ' fouls');
+        return this;     
+    },
+    fullTime() {
+        console.log('Final score is ' + this.score + ' with ' + this.fouls + ' fouls');
+        return this;
+    },
+    foul() {
+        this.fouls++;
+        return this;
+    }
+}  
+//modify each of the above object methods to enable function chaining as below: 
+basketballGame.basket().freeThrow().freeThrow().basket().threePointer().halfTime(); 
+
+basketballGame.score = 0;
+
+basketballGame.basket().foul().freeThrow().basket().threePointer().threePointer().halfTime().threePointer().basket().basket().foul().freeThrow().foul().freeThrow().fullTime();
+
+//PROBLEM EIGHT
+
+const sydney = {     
+    name: 'Sydney',     
+    population: 5_121_000,     
+    state: 'NSW',     
+    founded: '26 January 1788',     
+    timezone: 'Australia/Sydney' 
+} 
+
+const philly = {
+    name: 'Philadelphia',
+    population: '>5',
+    state: 'PA',
+    founded: 'idk',
+    timezone: 'EST'
+}
+
+const printInfo = (obj) => {
+    for (info in obj) {
+        console.log(info + ' has a value of ' + obj[info])
+    }
+}
+
+printInfo(sydney)
+printInfo(philly)
+
+//PROBLEM NINE
+
+let teamSports = ['Hockey', 'Cricket', 'Volleyball']; 
+let dog1 = 'Bingo'; 
+let cat1 = { name: 'Fluffy', breed: 'Siberian' }; 
+let moreSports = teamSports;
+
+moreSports.push('Ultimate')
+moreSports.push('Quidditch')
+moreSports.unshift('Rugby')
+
+let dog2 = dog1;
+
+dog2 = 'Spot'
+
+let cat2 = cat1
+
+cat1.name = 'Jingle'
+
+console.log(teamSports);
+console.log(dog1)
+console.log(cat2)
+
+//arrays and objects are not primitives so they pass by reference
+
+//to pass by value, use spread syntax:
+
+moreSports = [ ...teamSports ]
+cat2 = { ...cat1 }
+teamSports = []
+cat1 = 'dead'
+
+console.log(moreSports)
+console.log(cat2)
+
+//PROBLEM TEN
+
+function Person(name, age) { 
+    this.name = name; 
+    this.age = age; 
+    this.human = true; 
+} 
+
+const me = new Person('Chris', 27)
+const leo = new Person('Leonardo', 47)
+
+printInfo(me)
+printInfo(leo)
+
+function PersonClass(name, age) {
+    this.name = name;
+    this.age = age;
+    this.human = true;
+    this.canDrive = () => this.age >= 17
+}
+
+const nick = new PersonClass('Nicholas', 64)
+
+printInfo(nick)
+
+console.log(nick.canDrive())
+
