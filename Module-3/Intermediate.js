@@ -191,7 +191,18 @@ const getTitles = (authorInitials) =>
   books
     .filter((book) => book.author[0] === authorInitials)
     .map((book) => book.title);
-const latestBook = () => console.log(getBookTitle(3));
+let latestID = 0;
+const latestBook = () => {
+  let year = 0;
+  books.forEach((book) => {
+    if (book.year > year) {
+      year = book.year;
+      latestID = book.id;
+    }
+  });
+  return books.find((book) => book.id === latestID);
+};
+
 console.log("-------------");
 console.log(getOldBooks());
 console.log("-------------");
@@ -200,6 +211,7 @@ console.log(books);
 console.log("-------------");
 console.log(getTitles("A"));
 console.log("-------------");
+console.log(latestBook());
 
 //problem eight
 
@@ -230,3 +242,94 @@ console.log("-----------");
 printPhoneBook(phoneBook);
 
 //problem nine
+
+let salaries = {
+  Timothy: 35000,
+  David: 25000,
+  Mary: 55000,
+  Christina: 75000,
+  James: 43000,
+};
+
+const sumSalaries = (salaries) => {
+  let sum = 0;
+  for (let salary in salaries) {
+    sum += salaries[salary];
+  }
+  return sum;
+};
+
+console.log(sumSalaries(salaries));
+
+const topEarner = (salaries) => {
+  let highestEarner = "";
+  let earned = 0;
+  for (let person in salaries) {
+    if (salaries[person] > earned) {
+      highestEarner = person;
+      earned = salaries[person];
+    }
+  }
+  return highestEarner;
+};
+
+console.log(topEarner(salaries));
+
+//problem ten
+
+//provided by Claude
+function dateDiff(date1, date2) {
+  let start = new Date(date1);
+  let end = new Date(date2);
+
+  // ensure start is earlier than end
+  if (start > end) {
+    [start, end] = [end, start];
+  }
+
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  let days = end.getDate() - start.getDate();
+
+  // borrow days from months if negative
+  if (days < 0) {
+    months--;
+    // get days in the month *before* end's month
+    const prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  // borrow months from years if negative
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
+}
+
+const today = new Date();
+console.log("Current time is " + today.toLocaleTimeString());
+console.log(today.getHours() + " hours have passed so far today");
+console.log(today.getMinutes() + " minutes have passed today");
+console.log(today.getSeconds() + " seconds have passed today");
+const birth = new Date(1999, 0, 28);
+const birthDiff = dateDiff(birth, today);
+console.log(
+  "I am " +
+    birthDiff.years +
+    " years, " +
+    birthDiff.months +
+    " months, and " +
+    birthDiff.days +
+    " days old",
+);
+
+const daysInBetween = (date1, date2) => {
+  if (date2 > date1) return daysInBetween(date2, date1);
+  const millis = date1 - date2;
+  return millis / 1000 / 60 / 60 / 24;
+};
+
+console.log(daysInBetween(birth, today));
+console.log(daysInBetween(birth, today) / 365);
