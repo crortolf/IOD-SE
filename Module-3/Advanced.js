@@ -234,14 +234,60 @@ const validatedOrderItem = validateStringArg(orderItems);
 
 //problem nine
 
+let delay;
+
 function randomDelay() {
-  return new Promise((res) =>
-    setTimeout(
-      () => {
-        resolve();
-      },
-      Math.random() * 19000 + 1000,
-    ),
-  );
+  return new Promise((res, rej) => {
+    delay = Math.floor(Math.random() * 19000) + 1000;
+
+    if (Math.floor(delay) % 2 === 0) {
+      return setTimeout(() => res(), delay);
+    }
+    return setTimeout(() => rej(), delay);
+  });
 }
-randomDelay().then(() => console.log("There appears to have been a delay."));
+
+randomDelay()
+  .then(() =>
+    console.log("There appears to have been a delay. Time: " + delay + " ms."),
+  )
+  .catch((e) => console.log("Rejected after " + delay + " ms."));
+
+//problem ten
+
+// run 'npm init' and accept all the defaults // run 'npm install node-fetch' // run 'npm pkg set type=module'
+import fetch from "node-fetch";
+globalThis.fetch = fetch;
+
+// function fetchURLData(url) {
+//   let fetchPromise = fetch(url).then((response) => {
+//     if (response.status === 200) {
+//       return response.json();
+//     } else {
+//       throw new Error(`Request failed with status ${response.status}`);
+//     }
+//   });
+//   return fetchPromise;
+// }
+
+let fetchURLData = async (url) => {
+  let fetchResponse = await fetch(url);
+
+  if (fetchResponse.status === 200) {
+    return fetchResponse.json();
+  } else {
+    throw new Error(`Request failed with status ${fetchResponse.status}`);
+  }
+};
+
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
+
+fetchURLData("https://jsonplaceholder.typicode.com/posts/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
+
+fetchURLData("https://jsonplaceholder.typicode.com/posts")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));
