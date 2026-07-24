@@ -1,0 +1,30 @@
+table,
+td,
+tr,
+tbody {
+  background-color: #555555;
+  padding: 10px;
+}
+
+button {
+  border-radius: 20%;
+  height: 120px;
+  width: 120px;
+  font-size: 40px;
+}
+
+p {
+  color: white;
+  font-size: 20px;
+}
+
+#screen > td {
+  background: black;
+  height: 120px;
+  width: 120px;
+  text-align: center;
+}
+#screen > tr,
+#screen {
+  background-color: black;
+}

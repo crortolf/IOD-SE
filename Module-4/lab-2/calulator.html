@@ -1,0 +1,85 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+
+  <!-- enter a number, enter an operator, then enter another number. enter to calculate, enter again to clear -->
+
+  <body>
+    <table>
+      <tbody>
+        <tr id="screen">
+          <td>
+            <p id="left-operand"></p>
+          </td>
+          <td>
+            <p id="operator"></p>
+          </td>
+          <td>
+            <p id="right-operand"></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="input('0')">0</button>
+          </td>
+          <td>
+            <button onclick="input('5')">5</button>
+          </td>
+          <td>
+            <button onclick="input('+')">+</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="input('1')">1</button>
+          </td>
+          <td>
+            <button onclick="input('6')">6</button>
+          </td>
+          <td>
+            <button onclick="input('-')">-</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="input('2')">2</button>
+          </td>
+          <td>
+            <button onclick="input('7')">7</button>
+          </td>
+          <td>
+            <button onclick="input('*')">*</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="input('3')">3</button>
+          </td>
+          <td>
+            <button onclick="input('8')">8</button>
+          </td>
+          <td>
+            <button onclick="input('/')">/</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button onclick="input('4')">4</button>
+          </td>
+          <td>
+            <button onclick="input('9')">9</button>
+          </td>
+          <td>
+            <button onclick="input('=')">=</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+
+  <script type="text/javascript" src="calculator.js"></script>
+</html>
