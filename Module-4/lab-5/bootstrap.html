@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Update Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="bootstrap.css" />
+  </head>
+  <body>
+    <div class="container text-center" id="card-container">
+      <div class="row"></div>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="new-title" class="form-label">Article Title</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Article Title"
+          id="new-title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="article-content" class="form-label">Article Content</label>
+        <textarea
+          type="text"
+          class="form-control"
+          placeholder="Article Content"
+          id="new-content"
+          rows="2"
+        ></textarea>
+      </div>
+      <button type="button" class="btn" onClick="newArticle()">Submit</button>
+    </form>
+  </body>
+
+  <template id="card-template">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card">
+        <img src="TestImage.png" class="card-img-top" alt="Test Image" />
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has some text to explain.</p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script type="text/javascript" src="bootstrap.js"></script>
+</html>
