@@ -1,0 +1,12 @@
+body {
+  background-color: grey;
+}
+
+.card {
+  width: 200px;
+  margin: 25px;
+}
+
+.card-image-top {
+  width: 200px;
+}
