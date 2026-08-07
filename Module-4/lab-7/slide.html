@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <body>
+    <div
+      class="square"
+      style="
+        width: 200px;
+        height: 200px;
+        margin-top: 0%;
+        background-color: blue;
+        animation-name: slide-color-change;
+        animation-duration: 3s;
+      "
+    ></div>
+  </body>
+
+  <style>
+    @keyframes slide-color-change {
+      from {
+        margin-top: 0%;
+        background-color: blue;
+      }
+      50% {
+        margin-top: 100%;
+        background-color: purple;
+      }
+      to {
+        margin-top: 0%;
+        background-color: red;
+      }
+    }
+  </style>
+</html>
