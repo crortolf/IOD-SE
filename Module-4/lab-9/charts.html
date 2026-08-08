@@ -26,34 +26,6 @@
           },
         ],
       };
-      fetch("https://fakestoreapi.com/products")
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json); // use this JSON to find and set correct option data for the chart
-          const categories = new Set();
-          const amounts = {};
-          for (const product of json) {
-            categories.add(product.category);
-            if (product.category in amounts) amounts[product.category]++;
-            else amounts[product.category] = 1;
-          }
-
-          const categoriesData = [];
-          const amountsData = [];
-
-          for (const categoryName of categories) {
-            categoriesData.push(categoryName);
-            amountsData.push(amounts[categoryName]);
-          }
-
-          options.xAxis.data = categoriesData;
-          options.series[0].data = amountsData;
-        })
-        .then(() => {
-          // Display the chart
-          myChart.setOption(options);
-        }); // Initialize the echarts instance based on the prepared div
-      let myChart = echarts.init(document.getElementById("main"));
     </script>
   </body>
 </html>
