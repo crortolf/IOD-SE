@@ -52,6 +52,7 @@ const input = (buttonLabel) => {
         )
           .then((response) => response.json())
           .then((response) => {
+            console.log(response);
             leftOperand.textContent = response.result;
           });
       if (operator.textContent === "/")
@@ -59,7 +60,6 @@ const input = (buttonLabel) => {
           `/calculator/div?num1=${leftOperand.textContent}&num2=${rightOperand.textContent}`,
         )
           .then((response) => {
-            console.log(response);
             return response.json();
           })
           .then((data) => {
