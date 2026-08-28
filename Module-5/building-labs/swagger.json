@@ -1,0 +1,95 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Calculator",
+    "description": "First Swagger Use",
+    "license": { "name": "MIT", "url": "https://opensource.org/licenses/MIT" }
+  },
+  "host": "localhost:80",
+  "basePath": "/",
+  "tags": [
+    { "name": "Calculator", "description": "API for Calculus in the system" }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/calculator/add": {
+      "get": {
+        "tags": ["Addition Service"],
+        "summary": "Add 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          { "name": "num2", "in": "query", "description": "The Second number" }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to add two numbers together"
+          }
+        }
+      }
+    },
+    "/calculator/sub": {
+      "get": {
+        "tags": ["Subtraction Service"],
+        "summary": "Subtracts 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "Minuend"
+          },
+          { "name": "num2", "in": "query", "description": "Subtrahend" }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to subtract one number from another"
+          }
+        }
+      }
+    },
+    "/calculator/mult": {
+      "get": {
+        "tags": ["Multiplication Service"],
+        "summary": "Multiply 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "The First Number"
+          },
+          { "name": "num2", "in": "query", "description": "The Second number" }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to multiply two numbers together"
+          }
+        }
+      }
+    },
+    "/calculator/div": {
+      "get": {
+        "tags": ["Division Service"],
+        "summary": "Divide 2 numbers",
+        "parameters": [
+          {
+            "name": "num1",
+            "in": "query",
+            "description": "Dividend"
+          },
+          { "name": "num2", "in": "query", "description": "Divisor" }
+        ],
+        "responses": {
+          "200": {
+            "description": "This service allows you to divide one number by another"
+          }
+        }
+      }
+    }
+  }
+}
