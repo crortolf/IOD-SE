@@ -1,0 +1,23 @@
+body {
+  background-color: grey;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  margin: 25px;
+}
+
+.card-template {
+  padding: 15px;
+}
+
+.card-image-top {
+  width: 200px;
+}
