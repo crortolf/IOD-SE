@@ -5,8 +5,10 @@ function Emoji() {
 
   return (
     <>
-      <img src={hamsterImage(happy)} />
-      <button onClick={() => setHappy(!happy)}>Change</button>
+      <img style={{ width: "300px" }} src={hamsterImage(happy)} />
+      <button style={{ color: "black" }} onClick={() => setHappy(!happy)}>
+        Change
+      </button>
     </>
   );
 }

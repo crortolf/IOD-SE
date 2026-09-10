@@ -1,6 +1,7 @@
 import Greeting from "../components/Greeting.jsx";
 import BigCats from "../components/BigCats.jsx";
 import Emoji from "../components/Emoji.jsx";
+import Calculator from "../components/Calculator.jsx";
 import "./App.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       </Greeting>
       <BigCats />
       <Emoji />
+      <Calculator />
     </>
   );
 }

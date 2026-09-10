@@ -1,7 +1,8 @@
-import SingleCat from "../components/SingleCat.jsx";
+import SingleCat from "./SingleCat.jsx";
+import AddCatForm from "./AddCatForm.jsx";
 import { useState } from "react";
 
-const cats = [
+let cats = [
   {
     id: 0,
     name: "Cheetah",
@@ -55,38 +56,63 @@ const cats = [
 
 function BigCats() {
   const [sortMode, setSortMode] = useState(0);
-  const [filterMode, setFilterMode] = useState(true);
+  const [filterMode, setFilterMode] = useState(false);
+  const [permanentCats, setPermanentCats] = useState(cats);
+  const [nextID, setNextID] = useState(10);
+
+  const addCat = (name, latinName, imageURL) => {
+    setPermanentCats([
+      ...permanentCats,
+      {
+        id: nextID,
+        name: name,
+        latinName: latinName,
+        imageURL: imageURL,
+      },
+    ]);
+    setNextID(nextID + 1);
+  };
+
+  const deleteCat = (id) => {
+    setPermanentCats(permanentCats.filter((cat) => cat.id !== id));
+  };
 
   let catList;
 
-  if (sortMode === 0) cats.sort((cat1, cat2) => cat1.id - cat2.id);
-  else if (sortMode === 1)
-    cats.sort((cat1, cat2) => cat1.name.localeCompare(cat2.name));
-  else cats.sort((cat1, cat2) => cat2.name.localeCompare(cat1.name));
-
-  if (!filterMode) catList = cats;
+  if (!filterMode) catList = permanentCats.filter(() => true);
   else
-    catList = cats.filter((cat) => {
-      if (cat.latinName.substring(0, 8) === "Panthera") return true;
-      return false;
-    });
+    catList = permanentCats.filter(
+      (cat) => cat.latinName.substring(0, 8) === "Panthera",
+    );
+
+  if (sortMode === 0) catList.sort((cat1, cat2) => cat1.id - cat2.id);
+  else if (sortMode === 1)
+    catList.sort((cat1, cat2) => cat1.name.localeCompare(cat2.name));
+  else catList.sort((cat1, cat2) => cat2.name.localeCompare(cat1.name));
+
   return (
     <>
-      <button onClick={() => setSortMode(0)}>Sort by ID</button>
-      <button onClick={() => setSortMode(1)}>Sort Alphabetically</button>
-      <button onClick={() => setSortMode(2)}>
+      <button style={{ color: "black" }} onClick={() => setSortMode(0)}>
+        Sort by ID
+      </button>
+      <button style={{ color: "black" }} onClick={() => setSortMode(1)}>
+        Sort Alphabetically
+      </button>
+      <button style={{ color: "black" }} onClick={() => setSortMode(2)}>
         Sort Reverse Alphabetically
       </button>
-      <button onClick={() => setFilterMode(true)}>
+      <button style={{ color: "black" }} onClick={() => setFilterMode(true)}>
         Display Panthera family
       </button>
-      <button onClick={() => setFilterMode(false)}>Reset</button>
+      <button style={{ color: "black" }} onClick={() => setFilterMode(false)}>
+        Reset
+      </button>
       <ol>
-        )
         {catList.map((cat) => (
-          <SingleCat key={cat.id} cat={cat} />
+          <SingleCat key={cat.id} cat={cat} deleteCat={deleteCat} />
         ))}
       </ol>
+      <AddCatForm addCat={addCat} />
     </>
   );
 }
