@@ -56,6 +56,19 @@
   }
 }
 
+.nav-button {
+  padding: 20px;
+  color: Violet;
+  background-color: black;
+  font-size: 30px;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 #center {
   display: flex;
   flex-direction: column;
@@ -167,7 +180,7 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;

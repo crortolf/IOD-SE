@@ -1,15 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import BitcoinRates from "./BitcoinRates";
-import Emoji from "./Emoji";
+import App from "./App";
 import { MoodProvider } from "./MoodContext";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <MoodProvider>
-      <BitcoinRates />
-      <Emoji />
-    </MoodProvider>
+    <BrowserRouter>
+      <MoodProvider>
+        <App />
+      </MoodProvider>
+    </BrowserRouter>
   </StrictMode>,
 );
