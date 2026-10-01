@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { TextField } from "@mui/material";
 
 function LoginForm() {
-  // input state values always need to be strings -empty initially
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
   return (
-    <div className="LoginForm componentBox">
-      <div className="formRow">
-        <label>
-          Email Address:
-          <input
-            type="email"
-            value={userEmail}
-            name="userEmail"
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-        </label>
-      </div>
-      <div className="formRow">
-        <label>
-          Password:
-          <input
-            type="password"
-            value={userPassword}
-            name="password"
-            onChange={(e) => setUserPassword(e.target.value)}
-          />
-        </label>
-      </div>
-    </div>
+    <form>
+      {" "}
+      <TextField
+        required
+        id="outlined-required"
+        label="Email"
+        sx={{
+          "& .MuiInputLabel-root": { color: "white" },
+          "& .MuiInputLabel-root.Mui-focused": { color: "white" },
+          "& .MuiOutlinedInput-root": {
+            color: "#white",
+            "& fieldset": { borderColor: "white" },
+            "&:hover fieldset": { borderColor: "white" },
+            "&.Mui-focused fieldset": { borderColor: "white" },
+          },
+        }}
+      />
+      <br />
+      <br />
+      <TextField
+        required
+        id="outlined-required"
+        label="Password"
+        sx={{
+          "& .MuiInputLabel-root": { color: "white" },
+          "& .MuiInputLabel-root.Mui-focused": { color: "white" },
+          "& .MuiOutlinedInput-root": {
+            color: "#white",
+            "& fieldset": { borderColor: "white" },
+            "&:hover fieldset": { borderColor: "white" },
+            "&.Mui-focused fieldset": { borderColor: "white" },
+          },
+        }}
+      />
+    </form>
   );
 }
 
