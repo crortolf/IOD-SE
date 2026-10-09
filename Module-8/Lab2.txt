@@ -1,0 +1,43 @@
+db.users.find()
+{
+  _id: ObjectId('6ac51e2f75da8967c87ebdb6'),
+  username: 'John',
+  password: 'abc123',
+  email: 'john@john.org',
+  role: 'owner'
+}
+{
+  _id: ObjectId('6ac51e2f75da8967c87ebdb7'),
+  username: 'Jane',
+  password: 'def456',
+  email: 'fake@gone.cat',
+  role: 'poster'
+}
+db.posts.find()
+{
+  _id: ObjectId('6ac5208775da8967c87ebdb8'),
+  author: ObjectId('6ac51e2f75da8967c87ebdb6'),
+  title: 'Cats Are Great',
+  description: 'Cats are loving, intellegent creatures',
+  media: 'cat.png'
+}
+{
+  _id: ObjectId('6ac521af75da8967c87ebdb9'),
+  author: ObjectId('6ac51e2f75da8967c87ebdb7'),
+  title: 'Cats Need to Be Destroyed',
+  description: 'Cats are too evil for this world',
+  media: 'bomb.png'
+}
+db.likes.find()
+{
+  _id: ObjectId('6ac5246575da8967c87ebdba'),
+  post: ObjectId('6ac521af75da8967c87ebdb9'),
+  user: ObjectId('6ac51e2f75da8967c87ebdb6')
+}
+db.comments.find()
+{
+  _id: ObjectId('6ac5249975da8967c87ebdbb'),
+  post: ObjectId('6ac521af75da8967c87ebdb9'),
+  user: ObjectId('6ac51e2f75da8967c87ebdb6'),
+  content: 'Everyone deserves an opinion'
+}
