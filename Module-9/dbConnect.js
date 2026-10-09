@@ -1,7 +1,7 @@
 "use strict";
 const Mongoose = require("mongoose");
 // if the connection fails, try 127.0.0.1 instead of localhost below
-const uri = process.env.DB_URI || "mongodb://localhost/myFirstDatabase";
+const uri = process.env.DB_URI || "mongodb://localhost/BlogBackend";
 // Connect to MongoDB
 Mongoose.connect(uri)
   .then(() => console.log("MongoDB Connected"))
