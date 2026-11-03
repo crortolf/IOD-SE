@@ -1,6 +1,6 @@
 let express = require("express");
 let router = express.Router();
-let Controllers = require("../controllers");
+let Controllers = require("../Mongo/controllers");
 
 // Adds a GET route to return all users
 router.get("/", (req, res) => {

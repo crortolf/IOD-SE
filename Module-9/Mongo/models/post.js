@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = monghoose.Schema;
+const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "user" },

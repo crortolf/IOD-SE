@@ -7,4 +7,4 @@ const commentSchema = new Schema({
   content: { type: String, trim: true, required: true },
 });
 
-module.exports = mongoose.model("like", likeSchema);
+module.exports = mongoose.model("comment", commentSchema);
