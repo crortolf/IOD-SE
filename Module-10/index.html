@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket Chat App</title>
+  </head>
+  <body>
+    <h2>Welcome to Socket Chat</h2>
+    <form>
+      <p>Enter Username</p>
+      <input
+        type="text"
+        id="username"
+        placeholder="George"
+        title="Enter Username"
+      />
+      <br />
+      <button type="button" id="submit-username">Enter Chat</button>
+    </form>
+
+    <div style="display: flex; gap: 10px">
+      <!-- column-reverse anchors the content (and the scroll position) to the bottom -->
+      <div
+        style="
+          width: 600px;
+          height: 800px;
+          overflow-y: scroll;
+          display: flex;
+          flex-direction: column-reverse;
+        "
+      >
+        <div id="chat-area"></div>
+      </div>
+      <div
+        style="width: 150px; border-left: 1px solid #ccc; padding-left: 10px"
+      >
+        <strong>In the chat</strong>
+        <ul id="user-list" style="list-style: none; padding: 0"></ul>
+      </div>
+    </div>
+    <div
+      id="typing-indicator"
+      style="height: 1.5em; font-style: italic; color: gray"
+    ></div>
+    <form>
+      <input id="message-box" style="width: 540px; overflow-x: hidden" />
+      <button type="button" id="send-chat" style="width: 50px">Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      let username = null;
+      let oldName = null;
+
+      // Server sends the full list of names whenever someone joins, renames or leaves
+      socket.on("users", (names) => {
+        const list = document.getElementById("user-list");
+        list.innerHTML = "";
+        names.forEach((name) => {
+          const li = document.createElement("li");
+          li.textContent = name;
+          list.appendChild(li);
+        });
+      });
+
+      // ----- Typing indicator -----
+      // Other people currently typing, keyed by socket id
+      const typingUsers = new Map();
+      const showTyping = () => {
+        const names = [...typingUsers.values()];
+        let text = "";
+        if (names.length === 1) text = names[0] + " is typing...";
+        else if (names.length > 1) text = names.join(", ") + " are typing...";
+        document.getElementById("typing-indicator").textContent = text;
+      };
+      socket.on("typing", ({ id, name }) => {
+        typingUsers.set(id, name);
+        showTyping();
+      });
+      socket.on("stopTyping", (id) => {
+        typingUsers.delete(id);
+        showTyping();
+      });
+
+      // Our own typing: announce once when we start, stop after 5s of no keystrokes
+      let isTyping = false;
+      let typingTimer = null;
+      const stopTyping = () => {
+        clearTimeout(typingTimer);
+        if (isTyping) {
+          isTyping = false;
+          socket.emit("stopTyping");
+        }
+      };
+      document.getElementById("message-box").addEventListener("input", () => {
+        if (username === null) return;
+        if (!isTyping) {
+          isTyping = true;
+          socket.emit("typing");
+        }
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(stopTyping, 5000);
+      });
+
+      socket.on("join", (name) => {
+        document.getElementById("chat-area").innerHTML +=
+          "<br>" + name + " has joined the chat";
+      });
+
+      socket.on("broadcastMessage", (message) => {
+        document.getElementById("chat-area").innerHTML += message;
+      });
+
+      document
+        .getElementById("submit-username")
+        .addEventListener("click", () => {
+          if (username === null) {
+            username = document.getElementById("username").value;
+            socket.emit("join", username);
+            document.getElementById("chat-area").innerHTML +=
+              "<br>" + username + " has joined the chat";
+          } else {
+            oldName = username;
+            username = document.getElementById("username").value;
+            socket.emit("change", username);
+            document.getElementById("chat-area").innerHTML +=
+              "<br>" + oldName + " has changed their name to " + username;
+          }
+        });
+
+      document.getElementById("send-chat").addEventListener("click", () => {
+        if (username !== null) {
+          const message =
+            "<br>" +
+            username +
+            ": " +
+            document.getElementById("message-box").value;
+          document.getElementById("chat-area").innerHTML += message;
+          socket.emit("sendMessage", message);
+          stopTyping();
+        } else {
+          document.getElementById("chat-area").innerHTML +=
+            "<br>System Message: please join with a username";
+        }
+      });
+    </script>
+  </body>
+</html>
