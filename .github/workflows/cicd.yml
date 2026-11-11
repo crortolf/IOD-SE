@@ -22,10 +22,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Open folder
-        run: cd Module-10
-
       - name: Install dependencies
+        working-directory: Module-10
         run: npm install
 
       - name: Login to Docker Hub
@@ -42,8 +40,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          context: ./
-          file: ./Dockerfile
+          context: ./Module-10
+          file: ./Module-10/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/module-10-containerized:latest
 
